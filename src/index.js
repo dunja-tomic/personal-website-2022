@@ -1,5 +1,6 @@
 import { ThemeProvider } from "@emotion/react";
 import React from "react";
+import ReactGA from "react-ga";
 import ReactDOM from "react-dom";
 import { BrowserRouter as Router, Route, Routes } from "react-router-dom";
 
@@ -29,7 +30,8 @@ const routing = (
   </ThemeProvider>
 );
 
-// ReactGA.initialize("UA-140221499-1");
+ReactGA.initialize("UA-140221499-1");
+ReactGA.pageview(window.location.pathname + window.location.search);
 ReactDOM.render(routing, document.getElementById("root"));
 
 // If you want your app to work offline and load faster, you can change
