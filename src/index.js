@@ -1,17 +1,38 @@
-import React from 'react';
-import ReactDOM from 'react-dom/client';
-import './index.css';
-import App from './App';
-import reportWebVitals from './reportWebVitals';
+import { ThemeProvider } from "@emotion/react";
+import React from "react";
+import ReactDOM from "react-dom";
+import { BrowserRouter as Router, Route, Routes } from "react-router-dom";
 
-const root = ReactDOM.createRoot(document.getElementById('root'));
-root.render(
-  <React.StrictMode>
-    <App />
-  </React.StrictMode>
+import * as serviceWorker from "./serviceWorker";
+
+import "./index.css";
+
+import theme from "./theme";
+
+import HomePage from "./views/HomePage";
+import FunStuffPage from "./views/FunStuffPage";
+import ExperiencePage from "./views/ExperiencePage";
+import ProjectsPage from "./views/ProjectsPage";
+
+const routing = (
+  <ThemeProvider theme={theme}>
+    <Router>
+      <Routes>
+        <Route exact path="/" element={<HomePage />} />
+        <Route exact path="/fun-stuff" element={<FunStuffPage />} />
+        <Route exact path="/experience" element={<ExperiencePage />} />
+        <Route exact path="/projects" element={<ProjectsPage />} />
+
+        {/* <Route component={NotFound} /> */}
+      </Routes>
+    </Router>
+  </ThemeProvider>
 );
 
-// If you want to start measuring performance in your app, pass a function
-// to log results (for example: reportWebVitals(console.log))
-// or send to an analytics endpoint. Learn more: https://bit.ly/CRA-vitals
-reportWebVitals();
+// ReactGA.initialize("UA-140221499-1");
+ReactDOM.render(routing, document.getElementById("root"));
+
+// If you want your app to work offline and load faster, you can change
+// unregister() to register() below. Note this comes with some pitfalls.
+// Learn more about service workers: https://bit.ly/CRA-PWA
+serviceWorker.unregister();
